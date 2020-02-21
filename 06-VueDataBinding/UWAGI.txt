@@ -1,0 +1,2 @@
+Zapis danych modelu do local storage
+
