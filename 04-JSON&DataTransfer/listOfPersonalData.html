@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<html>
+	<head>
+		<title>Ready States</title>
+		
+	</head>
+	<body>
+		<h1>LISTA DANYCH PERSONALNYCH</h1>
+		<button insertValueue="Wyświetl dane" onclick="connect()">Wyświetl dane</button>
+		<ol id="add"></ol>
+		
+		
+		<script>
+			 function connect() {
+				let xlm = new XMLHttpRequest()
+				let jsonPath = "./people.json"
+
+				xlm.open("GET", jsonPath, true)
+				xlm.onreadystatechange = function () {
+						if (this.readyState == 4 && this.status == 200) {
+							let peopleObject = JSON.parse(this.responseText)
+						
+							peopleObject.forEach((number, key) => {
+								let ol = document.getElementById('add')
+								let li = document.createElement("li")
+								let getNeededInformations = `${peopleObject[key].name} ${peopleObject[key].surname.toUpperCase()}, lat: +${peopleObject[key].age}, ${peopleObject[key].country}, email: ${peopleObject[key].email }`
+								let insertValue = document.createTextNode(getNeededInformations)
+
+
+								li.appendChild(insertValue)
+								ol.appendChild(li)
+							})
+
+						}
+
+					}
+
+					xlm.send()
+					}
+
+			
+
+		</script>
+
+	</body>
+</html>

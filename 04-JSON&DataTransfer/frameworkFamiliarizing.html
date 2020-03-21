@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<html>
+	<head>
+		<title>Ready States</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+        <script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    </head>
+	<body>
+		<h1>LISTA DANYCH PERSONALNYCH</h1>
+	
+		
+        <table id="tableOfPeople" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Country</th>
+                    <th>Mail</th>
+                </tr>
+            </thead>
+        </table>
+		
+		<script>
+            $(document).ready(function () {
+
+                $('#tableOfPeople').DataTable({
+                    ajax: {
+                                       "url": './people.json',
+                        dataSrc: ''
+                    },
+                    columns: [
+                        { data: 'name' },
+                                       { data: 'surname' },
+                        { data: 'age' },
+                        { data: 'country' },
+                        { data: 'email' }
+                    ]
+                })
+                
+                });
+
+            
+
+		</script>
+
+	</body>
+</html>

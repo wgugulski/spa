@@ -7,11 +7,31 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="appendData()">
 		<p id="personalData"></p>
 
-		<script>
+		<script type="text/javascript">
 
+	function appendData(){
+			var xlm = new XMLHttpRequest();
+			var jsonFile = "./daneosobowe.json";
+			
+			xlm.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var object = JSON.parse(this.responseText);
+					var output = document.getElementById("personalData");
+					output.innerHTML = object.name + " " +  object.surname;
+				}
+			}
+
+			xlm.open('GET', jsonFile);
+			xlm.send();
+			
+			
+			
+		
+		
+		}
 		</script>
 
 	</body>

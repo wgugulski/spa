@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Chart JS</title>
+</head>
+<body onload="display()">
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+function display(){
+const xlabels = [];
+const xdata = [];
+
+chartIt();
+
+async function getData(){
+let req = new XMLHttpRequest()
+
+
+let link = `http://api.nbp.pl/api/cenyzlota/last/10?format=json`
+
+req.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        var jsonFile = JSON.parse(this.response)
+
+        var labels = jsonFile.map( function(e) {
+            return xlabels.push(e.data)
+        })
+       
+        
+
+
+        var datas = jsonFile.map( function(e) {
+            return xdata.push(e.cena)
+        })
+      
+        
+        
+    }
+}
+
+req.open('GET', link, true)
+req.send()
+
+
+}
+
+
+
+
+
+
+
+
+async function chartIt(){
+    getData();
+
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        let massPopChart = new Chart(myChart,{
+            type:'bar',
+            data:{
+                labels:xlabels,
+                datasets:[{
+                    label: 'price',
+                    data:xdata,
+                    //backgroundColor:'green'
+                    backgroundColor:[
+                        'rgba(188,255,99)',
+                        'rgba(255,130,209)',
+                        'rgba(207,201,255)',
+                        'rgba(255,196,220)',
+                        'rgba(230,246,255)',
+                        'rgba(188,255,99)',
+                        'rgba(255,130,209)',
+                        'rgba(207,201,255)',
+                        'rgba(255,196,220)',
+                        'rgba(230,246,255)',
+                    ],
+                    borderWidth:2,
+                    borderColor:'#777'
+                }],
+            },
+            options:{}
+
+        });
+    }}
+    </script>
+</body>
+</html>

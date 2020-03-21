@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<html>
+	<head>
+		<title>Ready States</title>
+		
+	</head>
+	<body>
+		<h1>KURSY WALUT</h1>
+		
+		
+		<p id="eur">Euro </p>
+		<p id="usd">Dolar </p>
+		<p id="gbp">Funt </p>
+		
+		
+		<script>
+
+const usd_url = 'https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json';
+const eur_url = 'https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json';
+const gbp_url = 'https://api.nbp.pl/api/exchangerates/rates/a/gbp/?format=json';
+
+async function getCurrency(url) {
+  let response = await fetch(url);
+  let json = await response.json();
+  return json.rates[0].mid;
+}
+async function run() {
+  let usd = await getCurrency(usd_url);
+  let eur = await getCurrency(eur_url);
+  let gbp = await getCurrency(gbp_url);
+  
+  document.getElementById("usd").innerHTML += `kurs to ${usd}`;
+  document.getElementById("eur").innerHTML += `kurs to ${eur}`;
+  document.getElementById("gbp").innerHTML += `kurs to ${gbp}`;
+  
+}
+run()
+ 
+
+
+
+
+
+
+			
+			
+		</script>
+
+	</body>
+</html>
