@@ -2,10 +2,19 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  </head>
 <body>
+
+
+  <div class="container">
+    <canvas id="myChart"></canvas>
+  </div>
+
   <script>
-    var app = new Vue({
+
+var app = new Vue({
       el: '#app',
       data: {
         films: [
@@ -30,8 +39,39 @@
             popularity: 7.37
           }
         ] 
+      },
+
+      computed: {
+        xlabels:function(){
+            let label = this.films.map(function(item) { return item['language'] })
+            return label
+        },
+        xdata:function(){
+            let data = this.films.map(function(item) { return item['popularity'] })
+            return data
+        }
       }
+
     });
+
+
+let myChart = document.getElementById('myChart').getContext('2d');
+let massPopChart = new Chart(myChart,{
+    type:'bar',
+    data:{
+        labels:app.xlabels,
+        datasets:[{
+            label:'asdasd',
+            data:app.xdata,
+            backgroundColor:'green',
+            borderWidth:2,
+            borderColor:'#777'
+        }],
+    },
+    options:{}
+
+});
+
   </script>
 </body>
 </html>

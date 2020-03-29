@@ -2,8 +2,65 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
+    <style>
+      table {
+  font-family: 'Open Sans', sans-serif;
+  width: 80%;
+  border-collapse: collapse;
+  border: 3px solid #44475C;
+  margin: 10px 10px 0 10px;
+}
+
+table th {
+  text-transform: uppercase;
+  
+  text-align: center;
+  background: #44475C;
+  color: #FFF;
+  padding: 8px;
+  min-width: 30px;
+}
+
+table td {
+  text-align: left;
+  padding: 8px;
+  border-right: 2px solid #7D82A8;
+}
+table td:last-child {
+  border-right: none;
+}
+table tbody tr:nth-child(2n) td {
+  background: #D4D8F9;
+}
+    </style>
+  </head>
 <body>
+
+  
+    <table id="app">
+      <thead>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Director</th>
+        <th>Budget</th>
+      </thead>
+      <tbody>
+        <tr v-for="row in films">
+          <td>{{row.title}}</td>
+          <td>{{row.year}}</td>
+          <td>{{row.director}}</td>
+          <td>{{row.budget}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+ 
+
+
+
+
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -36,7 +93,7 @@
         ] 
         }
       }
-    });
+    );
   </script>
 </body>
 </html>
