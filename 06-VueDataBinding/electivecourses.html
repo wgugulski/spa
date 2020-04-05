@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <h1>Body Mass Index</h1>
+  <div id="app">
+    <span>Wybierz przedmioty: </span><br>
+    <input type="checkbox" id="one" value="Systemy zintegrowane" v-model="tableOfClasses">
+    <label for="one">Systemy zintegrowane</label><br>
+    <input type="checkbox" id="two" value="Programowanie aplikacji webowych SPA" v-model="tableOfClasses">
+    <label for="two">Programowanie aplikacji webowych SPA</label><br>
+    <input type="checkbox" id="three" value="Programowanie systemów mobilnych" v-model="tableOfClasses">
+    <label for="three">Programowanie systemów mobilnych</label><br>
+    <input type="checkbox" id="four" value="Programowanie systemów rozproszonych" v-model="tableOfClasses">
+    <label for="four">Programowanie systemów rozproszonych</label><br>
+    <input type="checkbox" id="five" value="Programowanie sztucznej inteligencji" v-model="tableOfClasses">
+    <label for="five">Programowanie sztucznej inteligencji</label><br>
+
+    <p>Wybrane przedmioty: to: {{tableOfClasses}}</p>
+    <p>Liczba wybranych przedmiotów: {{tableOfClasses.length}} </p>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+       tableOfClasses: []
+      }
+    });
+  </script>
+
+</body>
+</html>

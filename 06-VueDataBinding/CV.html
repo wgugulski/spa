@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+</head>
+<body>
+  <form id="app" action="" method="POST" class="form-group" novalidate="true">
+    <h1>Curriculum Vitae</h1>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+    <span>Imie: </span>
+        <input v-model="person.name" class="form-control" type="text" name="name" id=""/><br>
+    <span>Nazwisko: </span>
+        <input v-model="person.surname" class="form-control" type="text" name="surname" id=""><br>
+    <span>Wiek: </span>
+        <input v-model="person.age" class="form-control" type="number" name="age" id=""><br>
+        
+<div class="form-check">
+    <input v-model="person.gender" class="form-check-input" type="radio" id="male" name="gender" value="male">
+    <label class="form-check-label" for="male">Mężczyzna</label><br>
+    <input v-model="person.gender" class="form-check-input" type="radio" id="female" name="gender" value="female">
+    <label class="form-check-label" for="female">Kobieta</label>
+</div>
+    
+    <br>
+
+<span>Wykształcenie: </span> <br>
+    <select v-model="person.education" class="custom-select" id="education" name="education" size="4">
+        <option value="none">Brak</option>
+        <option value="basic">Podstawowe</option>
+        <option value="gym">Średnie</option>
+        <option value="university">Wyższe</option>
+    </select>
+<br><br>
+<span>Umiejętności:</span>
+<br>
+    <select v-model="person.skills" class="custom-select" id="skills" name="skills" size="4" multiple>
+        <option value="computer">Obsługa komputer</option>
+        <option value="DL">Prawo jazdy</option>
+        <option value="creativ">Kreatywność</option>
+        <option value="comunicativ">Praca w zespol</option>
+    </select>
+<br>
+<br>
+<button v-on:click="submit" class="btn btn-success" type="submit">Zapisz</button>
+<button v-on:click="getData" class="btn btn-success" type="submit">Czytaj</button>
+<p id="setData"> </p>
+</div>
+</div>
+</form>
+
+  <script>
+      
+    var app = new Vue({
+      el: '#app',
+      data: {
+        person: {
+            name: '',
+            surname: '', 
+            age: '',
+            gender: '',
+            education: '',
+            skills: []
+        }
+      },
+      methods: {
+        submit() {
+        let compare = JSON.stringify(this.person)
+        localStorage.setItem('person', compare)    
+        },
+        getData(){
+            return alert(localStorage.getItem('person'))
+        }
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

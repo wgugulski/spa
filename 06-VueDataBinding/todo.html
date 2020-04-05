@@ -10,10 +10,8 @@
     <input type="text" v-model="todo">
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
-    <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+    <ol v-if="todos.length" >
+      <li v-for="(todo, index) in todos" @dblclick="del(index)"> {{todo}} </li>
     </ol>
   </div>
   <script>
@@ -26,6 +24,9 @@
       methods: {
         add: function() {
           this.todos.push(this.todo);
+        },
+        del: function(todo){
+          this.todos.splice(todo,1)
         }
       }
     });
